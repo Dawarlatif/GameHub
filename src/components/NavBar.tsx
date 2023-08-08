@@ -1,17 +1,17 @@
 import { HStack, Image } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
+import ColorSwitchMode from "./ColorSwitchMode";
 
 const NavBar = () => {
   return (
-    <HStack>
+    <HStack justifyContent={"space-between"} p={"10px"}>
       <Image
         boxSize="60px"
         // objectFit='cover'
         src={logo}
         alt="Dan Abramov"
       />
-      <Text fontSize="xl">(xl) In love with React & Next</Text>
+      <ColorSwitchMode />
     </HStack>
   );
 };
