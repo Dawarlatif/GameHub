@@ -21,14 +21,19 @@ interface GameGenerator {
 const useaGames = () => {
   const [game, setGame] = useState<Game[]>([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     apiClient
       .get<GameGenerator>("/games")
-      .then((res) => setGame(res.data.results))
+      .then((res) => {
+        setGame(res.data.results);
+        setLoading(false);
+      })
       .catch((error) => setError(error.message));
   }, []);
-  return { game, error };
+  return { game, error, loading };
 };
 
 export default useaGames;
