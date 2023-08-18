@@ -7,34 +7,32 @@ export interface Platform {
   slug: string;
 }
 
-export interface Game {
+export interface Genre {
   id: number;
   name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
+  image_background:string
 }
-interface GameGenerator {
+interface GenreGenerator {
   count: number;
-  results: Game[];
+  results: Genre[];
 }
-const useaGames = () => {
-  const [game, setGame] = useState<Game[]>([]);
+const useaGenre = () => {
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     apiClient
-      .get<GameGenerator>("/games")
+      .get<GenreGenerator>("/genres")
       .then((res) => {
-        setGame(res.data.results);
+        setGenres(res.data.results);
         setLoading(false);
       })
       .catch((error) => setError(error.message));
   }, []);
 
-  return { game, error, loading };
+  return { genres, error, loading };
 };
 
-export default useaGames;
+export default useaGenre;
