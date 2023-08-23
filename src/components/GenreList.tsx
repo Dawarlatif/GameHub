@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Button,
   HStack,
@@ -6,7 +5,6 @@ import {
   List,
   ListItem,
   Spinner,
-  Text,
 } from "@chakra-ui/react";
 import getCroppedImageUrl from "../services/image-url";
 import useGenre, { Genre } from "../hooks/useGenre";
