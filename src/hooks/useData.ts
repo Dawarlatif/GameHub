@@ -14,6 +14,7 @@ const useData = <T>(endpoint:string, requestConfig?:AxiosRequestConfig , depende
 
   useEffect(() => {
     setLoading(true);
+    //using apiClient to get response from rawg Api
     apiClient
       .get<ResponseGenerator<T>>(endpoint,{...requestConfig})
       .then((res) => {
@@ -21,7 +22,9 @@ const useData = <T>(endpoint:string, requestConfig?:AxiosRequestConfig , depende
         setLoading(false);
       })
       .catch((error) => setError(error.message));
-  }, dependency?[...dependency]:[]);
+  }, 
+  //optionally assigns dependency iff dependency is there
+  dependency?[...dependency]:[]);
 
   return { data, error, loading };
 };
